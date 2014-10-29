@@ -43,7 +43,8 @@ namespace SyslogTrace
 
 		public override void WriteLine(string message)
 		{
-			Syscall.syslog(SyslogLevel.LOG_INFO, message);
+			foreach (var line in message.Split('\n'))
+				Syscall.syslog(SyslogLevel.LOG_INFO, line);
 		}
 	}
 }
